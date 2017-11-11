@@ -1,51 +1,59 @@
+namespace StrategyPattern {
 
-interface IFlyBehaviour {
-    private flySpeed: number;
-    fly(): void
-}
-
-
-class FastFlyBehaviour implements IFlyBehaviour {
-    fly(): void {
-        this.flySpeed += 5;
-    }
-}
-
-
-class SlowFlyBehaviour implements IFlyBehaviour {
-    fly():void {
-        this.flySpeed += 1;
-    }
-}
-
-
-class Duck {
-    private flyBehaviour: IFlyBehaviour;
-    private flySpeed: number;
-
-    constructor() {
-        this.flySpeed = 0;
+    export interface IFlyBehaviour {
+        private flySpeed: number;
+        fly(): void
     }
 
-    setFlyBehavior(flyBehaviour: IFlyBehaviour): viod {
-        this.flyBehaviour = flyBehaviour;
+    export class FastFlyBehaviour implements IFlyBehaviour {
+        fly(): void {
+            this.flySpeed += 5;
+        }
     }
 
-    fly(): void {
-        if (this.flyBehaviour) {
-            this.flyBehaviour.fly.apply(this);
+
+    export class SlowFlyBehaviour implements IFlyBehaviour {
+        fly():void {
+            this.flySpeed += 1;
+        }
+    }
+
+
+    export class Duck {
+
+        private flyBehaviour: IFlyBehaviour;
+        private flySpeed: number;
+
+        constructor() {
+            this.flySpeed = 0;
+        }
+
+        setFlyBehavior(flyBehaviour: IFlyBehaviour): viod {
+            this.flyBehaviour = flyBehaviour;
+        }
+
+        fly(): void {
+            if (this.flyBehaviour) {
+                this.flyBehaviour.fly.apply(this);
+            }
         }
     }
 }
 
+/**
+ * USAGE
+ */
 
-
-const fastDuck: Duck = new Duck();
-fastDuck.setFlyBehavior(new FastFlyBehaviour());
+const fastDuck: Duck = new StrategyPattern.Duck();
+fastDuck.setFlyBehavior(new StrategyPattern.FastFlyBehaviour());
 fastDuck.fly();
 
 
 
-const slowDuck: Duck = new Duck();
-slowDuck.setFlyBehavior(new SlowFlyBehaviour());
+const slowDuck: Duck = new StrategyPattern.Duck();
+slowDuck.setFlyBehavior(new StrategyPattern.SlowFlyBehaviour());
 slowDuck.fly();
+
+
+
+
