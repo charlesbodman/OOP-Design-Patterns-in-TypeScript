@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": ".",
+        "moduleResolution": "node",
+        "paths": {
+            "*": [
+                "*"
+            ]
+        }
+    }
+}
